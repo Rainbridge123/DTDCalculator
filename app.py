@@ -18,7 +18,7 @@ uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
 
-    st.subheader("📄 Uploaded Data")
+    st.subheader("Uploaded Data")
     st.dataframe(df)
 
     calc = Implied_asset_value(
