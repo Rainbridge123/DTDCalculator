@@ -109,7 +109,7 @@ class Implied_asset_value:
             "b": b
         })
 
-        ok = converged and (V_final > 0) and (abs(final_residual) <= max(1e-6, self.tol * max(1.0, abs(market_cap))))
+        ok = converged and (V_final > 0) and (abs(final_residual) <= max(1e-8, self.tol * max(1.0, abs(market_cap))))
         return (V_final if ok else V_final), ok, info
 
     def comp_DTD(self, V: float, L: float, T = 1) -> float:
@@ -130,10 +130,10 @@ class Implied_asset_value:
         DTD = self.comp_DTD(V, L) if V is not None else float("nan")
 
         output = {
-            "Leverge": L,
+            "Liability": L,
             "Implied Asset Value": V,
-            "Converged": bool(ok),
             "DTD": DTD,
+            "Validation": "Valid" if bool(ok) else "Not Valid",
         }
         
         return output
